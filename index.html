@@ -9,34 +9,10 @@
 <body >
     <div class="nav-bar"></div>
     <div id="app">
-        <div class="product">
-            <div class="productImage">
-                <img v-bind:src="image"><!--Como si fuera "pegamenro" se puede usar con otros como ALT HREF TITLE CLASS STYLE DISABLED-->
-            </div>
-            
-            <div class="productInfo">
-                <h1>{{product}}</h1> <!--La doble llave se llama expresion, puedo usarla para agregar caracteres crear funciones etc-->
-                <p v-if="inventory > 10">In Stock</p><!--condicionales-->
-                <p v-else-if = "inventory<=10 && inventory >0"> Almost out of stock!!!</p>
-                <p v-else>Out of stock</p>
-                <p v-show="colorA">Pastel</p>
-                <a v-bind:href="href"><p>{{descripcion}}</p></a>
-                <ul>
-                    <li v-for= "detail in details">{{detail}}</li>
-                </ul>
-                <div v-for="variant in variants"
-                     :key ="variant.variantId"
-                     class="color-box"
-                    :style ="{backgroundColor: variant.variantColor, fontSize: variant.variantFontSize}">
-                    <p @mouseover="updateProduct(variant.variantImage)"
-                    >{{variant.variantColor}}</p>
-                </div>
-                <button v-on:click="addToCart">Add to Cart</button>
-                <div class="cart">
-                    <p>Cart({{cart}})</p>
-                </div>
-            </div>
+        <div class="cart">
+            <p>Cart ({{cart.length}})</p>
         </div>
+        <product :premium="premium" @add-to-cart="updateCart"></product>
     </div>  
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/main.js"></script>
